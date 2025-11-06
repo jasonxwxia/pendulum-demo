@@ -1,0 +1,41 @@
+:root {
+	
+}
+
+.stage {
+	display:grid;
+	grid-template-rows:1fr auto;
+	min-height:100vh;
+}
+
+.canvaswrap {
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	padding:20px;
+}
+
+header {
+	padding:20px;
+	overflow:hidden;
+}
+
+h1 {
+	font-family: "IBM Plex Mono", monospace;
+	font-weight: 400px;
+	color: #FFF;
+}
+
+body {
+	font-family: "IBM Plex Mono", monospace;
+	font-weight: 100;
+	font-style: normal;
+	
+	background-color:#171717;
+}
+
+canvas {
+	background: transparent;
+	border-radius: 12px;
+	box-shadow: 0 8px 30px rgba(2,6,23,0.6)
+}
