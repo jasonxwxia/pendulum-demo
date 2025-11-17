@@ -9,20 +9,31 @@
 }
 
 .canvaswrap {
-	display:flex;
-	align-items:center;
-	justify-content:center;
 	padding:20px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+nav {
+	padding:20px;
+	right: 1px;
+	position: inherit;
+
+	
 }
 
 header {
-	padding:20px;
+	padding-left:20px;
 	overflow:hidden;
+	position:fixed;
+	display:flex;
+	width: 100%;
 }
 
 h1 {
 	font-family: "IBM Plex Mono", monospace;
-	font-weight: 400px;
+	font-weight: 400;
 	color: #FFF;
 }
 
@@ -31,6 +42,7 @@ body {
 	font-weight: 100;
 	font-style: normal;
 	
+	overflow-y:hidden;
 	background-color:#171717;
 }
 
