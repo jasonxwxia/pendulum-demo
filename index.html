@@ -13,8 +13,35 @@
 		</header>
 		<div class="stage">
 			<div class="canvaswrap">
-					<canvas width="900" height="600"></canvas>
+					<canvas width="900" height="600" id="canvas"></canvas>
 			</div>
+			<div class="controls">
+				<div class="control">
+					<label>Mass 1: <span id="m1Val">10<span></label>
+					<input id="m1" type="range" min="1" max="50" value="10"/>
+				</div>
+				<div class="control">
+					<label>Mass 2: <span id="m2Val">10<span></label>
+					<input id="m2" type="range" min="1" max="50" value="10"/>
+				</div>
+				<div class="control">
+					<label>Length 1: <span id="l1Val">10<span></label>
+					<input id="l1" type="range" min="40" max="250" value="160"/>
+				</div>
+				<div class="control">
+					<label>Length 2: <span id="l2Val">10<span></label>
+					<input id="l2" type="range" min="40" max="250" value="160"/>
+				</div>
+				<div class="control">
+					<label>Damping: <span id="dampVal">0.995<span></label>
+					<input id="damping" type="range" min="0.94" max="1" step="0.001"  value="0.995"/>
+				</div>
+				<div class="control">
+					<label>Gravity: <span id="gravVal">1.0<span></label>
+					<input id="grav" type="range" min="0" max="2000" step="0.05" value="1"/>
+				</div>
+				
 		</div>		
+	<script src="pendulum.js"></script>
 	</body>
 </html>
