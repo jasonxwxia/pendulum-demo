@@ -11,18 +11,18 @@
 
 	//parameters (linked to UI)
 	const el = id => document.getElementById(id);
-	const m1_s = el("m1"), m2_s = el("m2"), l1_s = el("l1"), l2_s = el("l2"), damp_s = el("damping"), grav_s = el("grav");	 
-	const m1Val = el("m1Val"), m2Val = el("m2Val"), l1Val = el("l1Val"), l2Val = el("l2Val"), dampVal = el("dampVal"), gravVal = el("gravVal");
+	const m1_s = el("m1"), m2_s = el("m2"), l1_s = el("l1"), l2_s = el("l2"), damp_s = el("damping"), grav_s = el("grav"), ang_s = el("angle");	 
+	const m1Val = el("m1Val"), m2Val = el("m2Val"), l1Val = el("l1Val"), l2Val = el("l2Val"), dampVal = el("dampVal"), gravVal = el("gravVal"), angVal = el("angleVal");
 	
 	function readUI(){
-		m1 = +m1_s.value; m2 = +m2_s.value; l1 = +l1_s.value; l2 = +l2_s.value; damping = +damp_s.value; grav = +grav_s.value;
-		m1Val.textContent = m1; m2Val.textContent = m2; l1Val.textContent = l1; l2Val.textContent = l2; dampVal.textContent = damping; gravVal.textContent = (+grav_s.value).toFixed(2);
+		m1 = +m1_s.value; m2 = +m2_s.value; l1 = +l1_s.value; l2 = +l2_s.value; damping = +damp_s.value; grav = +grav_s.value; ang = +ang_s.value;
+		m1Val.textContent = m1; m2Val.textContent = m2; l1Val.textContent = l1; l2Val.textContent = l2; dampVal.textContent = damping; gravVal.textContent = (+grav_s.value).toFixed(2); angVal.textContent = ang;
 	}
 	
 	//The default parameters
-	let m1 = +m1_s.value, m2 = +m2_s.value, l1 = +l1_s.value, l2 = +l2_s.value, damping = +damp_s.value, grav = +grav_s.value;
+	let m1 = +m1_s.value, m2 = +m2_s.value, l1 = +l1_s.value, l2 = +l2_s.value, damping = +damp_s.value, grav = +grav_s.value, ang = +ang_s.value;
 	readUI();
-	[m1_s, m2_s, l1_s, l2_s, damp_s, grav_s].forEach(s => s.addEventListener("input", readUI));
+	[m1_s, m2_s, l1_s, l2_s, damp_s, grav_s, ang_s].forEach(s => s.addEventListener("input", readUI));
 
 	function resize(){
 		const ratio = window.devicePixelRatio || 1;
@@ -66,8 +66,6 @@
 
 	}
 
-
-
 	//draw onto canvas
 	function draw(){
 		ctx.clearRect(0,0,W,H);
@@ -76,7 +74,7 @@
 		ctx.fillStyle = "rgba(255,255,255,0.02)";
 		ctx.fillRect(0,0,W,H);
 
-		//pivot centre coordinates
+		//coordinates
 		const x1 = cx + l1 * Math.sin(a1);
 		const y1 = cy + l1 * Math.cos(a1);
 		const x2 = x1 + l2 * Math.sin(a2);
@@ -99,12 +97,9 @@
 		ctx.beginPath(); ctx.fillStyle = grad1; ctx.arc(x1, y1, r1, 0, Math.PI * 2); ctx.fill();
 
 		const grad2 = ctx.createRadialGradient(x2-3, y2-3, 2, x2, y2, r2+4);
-		grad1.addColorStop(0, "#ffffff"); grad1.addColorStop(1, "#60a5fa");
-		ctx.beginPath(); ctx.fillStyle = grad1; ctx.arc(x2, y2, r2, 0, Math.PI * 2); ctx.fill();
+		grad2.addColorStop(0, "#ffffff"); grad2.addColorStop(1, "#60a5fa");
+		ctx.beginPath(); ctx.fillStyle = grad2; ctx.arc(x2, y2, r2, 0, Math.PI * 2); ctx.fill();
 
-		//pivotpoint centre
-		ctx.beginPath(); ctx.fillStyle = "rgba(255,255,255,0.9)"; ctx.arc(cx, cy, 6, 0, Math.Pi *2); ctx.fill();
-		
 		ctx.restore();
 	}
 
@@ -127,7 +122,13 @@
 
 	//reset on dc
 	canvas.addEventListener("dblclick", () => {
-		a1 = Math.PI/2*0.9; a2 = Math.PI/2*0.9; a1_v = 0; a2_v = 0;
+		a1 = Math.PI/2; a2 = Math.PI/2; a1_v = 0; a2_v = 0;
+	});
+	
+	//change angle manually
+	const input = document.getElementById("angle");
+	input.addEventListener("input", () => {
+		a1 = ang*Math.PI/180; a2 = ang*Math.PI/180; a1_v = 0; a2_v = 0;
 	});
 
 })();
